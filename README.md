@@ -9,9 +9,11 @@
 
 sau khi cài xammpp, cấu hình lại file php.ini xóa bỏ dấu ";" trước ``extension=pdo_sqlite``
 
-sau đó gõ lệnh composer install --ignore-platform-req=php
-
 ## 2. Cấu hình môi trường.
+Thêm file .env
+ ; copy từ file .env.example:  
+ 
+    cp .env.example .env
 vào file .env
         
     DB_CONNECTION=mysql
@@ -23,6 +25,10 @@ vào file .env
 
 Tên user name và password đúng
 Database tạo mới;
+
+sau đó cài thư viện:
+
+    composer install --ignore-platform-req=php
 
 sau đó chạy các lệnh
 

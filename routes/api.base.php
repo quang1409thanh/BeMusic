@@ -37,21 +37,6 @@ Route::prefix('api')->middleware('api')->group(static function (): void {
 
     Route::get('ping', static fn () => null);
 
-    Route::middleware('auth')->group(static function (): void {
-        Route::post('broadcasting/auth', static function (Request $request) {
-            $pusher = new Pusher(
-                config('broadcasting.connections.pusher.key'),
-                config('broadcasting.connections.pusher.secret'),
-                config('broadcasting.connections.pusher.app_id'),
-                [
-                    'cluster' => config('broadcasting.connections.pusher.options.cluster'),
-                    'encrypted' => true,
-                ]
-            );
-
-            return $pusher->socket_auth($request->channel_name, $request->socket_id);
-        })->name('broadcasting.auth');
-
         Route::get('data', [DataController::class, 'index']);
 
         Route::put('settings', [SettingController::class, 'update']);

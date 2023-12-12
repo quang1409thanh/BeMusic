@@ -12,7 +12,7 @@ sau khi cài xammpp, cấu hình lại file php.ini xóa bỏ dấu ";" trước
 ## 2. Cấu hình môi trường.
 Thêm file .env
  ; copy từ file .env.example:  
- 
+
     cp .env.example .env
 vào file .env
         

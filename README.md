@@ -1,7 +1,7 @@
 
 # BeMusic
 
-## Yêu cầu:
+## 1. Yêu cầu:
 để run project yêu cầu các thứ sau:
 - cài composer php
 - cái node js 
@@ -11,7 +11,7 @@ sau khi cài xammpp, cấu hình lại file php.ini xóa bỏ dấu ";" trước
 
 sau đó gõ lệnh composer install --ignore-platform-req=php
 
-## Cấu hình môi trường.
+## 2. Cấu hình môi trường.
 vào file .env
         
     DB_CONNECTION=mysql
@@ -29,4 +29,7 @@ sau đó chạy các lệnh
     php artisan migrate
     php artisan sound:init
     đến đoạn PATH thì gõ C:\
-    
+
+## 3. Nguồn tham khảo
+
+- tham khảo dựa trên dự án koel streaming music.

@@ -36,6 +36,13 @@ sau đó chạy các lệnh
     php artisan sound:init
     đến đoạn PATH thì gõ C:\
 
+    Chạy server:
+    php artisan serve
+
+    user: admin@sound.dev
+    password: sound123
+
+    đăng nhập vào để chạy các api:>
 ## 3. Nguồn tham khảo
 
 - tham khảo dựa trên dự án koel streaming music.

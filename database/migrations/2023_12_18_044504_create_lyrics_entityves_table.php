@@ -14,10 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('lyrics_entityfe', function (Blueprint $table) {
-            $table->string('videoId')->primary();
+            $table->id();
+            $table->string('videoId');
+            $table->unsignedBigInteger('userId');
             $table->boolean('error');
             $table->json('lines')->nullable();
             $table->string('syncType')->nullable();
+
+            $table->foreign('userId')->references('id')->on('users')->onDelete('cascade');
 
             $table->timestamps();
         });

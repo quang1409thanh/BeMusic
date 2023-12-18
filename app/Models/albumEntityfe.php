@@ -10,12 +10,20 @@ class albumEntityfe extends Model
     use HasFactory;
     protected $table = 'album_entityfe';
 
-    protected $primaryKey = 'browseId';
+    //protected $primaryKey = ['browseId', 'userId'];
 
-    public $incrementing = false;
+    //public $incrementing = false;
+    protected $casts = [
+        'track' => 'array',
+        'artistId' => 'array',
+        'artistName' => 'array',
+        'inLibrary' => 'datetime'
+    ];
 
     protected $fillable = [
+        'id',
         'browseId',
+        'userId',
         'artistId',
         'artistName',
         'audioPlaylistId',

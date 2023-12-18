@@ -14,7 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('songfe', function (Blueprint $table) {
-            $table->string('videoId')->primary();
+            $table->id();
+            $table->unsignedBigInteger('userId');
+            $table->string('videoId');
             $table->string('albumId')->nullable();
             $table->string('albumName')->nullable();
             $table->json('artistId')->nullable();
@@ -33,6 +35,7 @@ return new class extends Migration
             $table->bigInteger('totalPlayTime')->default(0);
             $table->integer('downloadState')->default(0);
             $table->timestamp('inLibrary')->useCurrent();
+            $table->foreign('userId')->references('id')->on('users')->onDelete('cascade');
 
             $table->timestamps();
         });

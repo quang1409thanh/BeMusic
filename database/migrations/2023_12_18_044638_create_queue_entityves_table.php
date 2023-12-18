@@ -15,8 +15,13 @@ return new class extends Migration
     {
         Schema::create('queue_entityfe', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('queue_id');
+            $table->unsignedBigInteger('userId');
             $table->json('listTrack');
             
+            //$table->primary(['id', 'userId']);
+            $table->foreign('userId')->references('id')->on('users')->onDelete('cascade');
+
             $table->timestamps();
         });
     }

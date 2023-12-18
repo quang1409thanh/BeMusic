@@ -14,11 +14,15 @@ return new class extends Migration
     public function up()
     {
         Schema::create('artistfe', function (Blueprint $table) {
-            $table->string('channelId')->primary();
+            $table->id();
+            $table->string('channelId');
+            $table->unsignedBigInteger('userId');
             $table->string('name');
             $table->string('thumbnails')->nullable();
             $table->boolean('followed')->default(false);
             $table->timestamp('inLibrary')->useCurrent();
+
+            $table->foreign('userId')->references('id')->on('users')->onDelete('cascade');
 
             $table->timestamps();
         });

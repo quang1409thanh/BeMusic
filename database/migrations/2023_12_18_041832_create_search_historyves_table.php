@@ -14,8 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('search_historyfe', function (Blueprint $table) {
-            $table->string('query')->primary();
+            $table->id();
+            $table->string('query');
+            $table->unsignedBigInteger('userId');
             $table->timestamps();
+
+            //$table->primary(['query', 'userId']);
+            $table->foreign('userId')->references('id')->on('users')->onDelete('cascade');
+
         });
     }
 

@@ -14,7 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('play_list_entityfe', function (Blueprint $table) {
-            $table->string('id')->primary();
+            $table->id();
+            $table->string('playlistId');
+            $table->unsignedBigInteger('userId');
             $table->string('author')->nullable();
             $table->text('description');
             $table->string('duration');
@@ -29,6 +31,8 @@ return new class extends Migration
             $table->timestamp('inLibrary')->useCurrent();
             $table->integer('downloadState')->default(0);
 
+            //$table->primary(['id', 'userId']);
+            $table->foreign('userId')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -11,9 +11,9 @@ class songfe extends Model
     use HasFactory;
 
     protected $table = 'songfe';
-    protected $primaryKey = 'videoId';
+    //protected $primaryKey = 'videoId';
 
-    public $incrementing = false;
+    //public $incrementing = false;
 
     protected $casts = [
         'artistId' => 'array',
@@ -22,6 +22,8 @@ class songfe extends Model
     ];
 
     protected $fillable = [
+        'id',
+        'userId',
         'videoId',
         'albumId',
         'albumName',

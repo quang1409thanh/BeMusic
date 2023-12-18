@@ -10,12 +10,19 @@ class playListEntityfe extends Model
     use HasFactory;
     protected $table = 'play_list_entityfe';
 
-    protected $primaryKey = 'id';
+    //protected $primaryKey = ['id', 'userId'];
 
-    public $incrementing = false;
+    // $incrementing = false;
+
+    protected $casts = [
+        'tracks' => 'array',
+        'inLibrary' => 'datetime'
+    ];
 
     protected $fillable = [
         'id',
+        'playlistId',
+        'userId',
         'author',
         'description',
         'duration',
@@ -33,8 +40,5 @@ class playListEntityfe extends Model
         'updated_at',
     ];
 
-    protected $casts = [
-        'tracks' => 'array',
-    ];
 }
 

@@ -14,9 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('set_video_id_entityfe', function (Blueprint $table) {
-            $table->string('videoId')->primary();
+            $table->id();
+            $table->unsignedBigInteger('userId');
+            $table->string('videoId');
             $table->string('setVideoId')->nullable();
             
+            $table->foreign('userId')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -14,7 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('album_entityfe', function (Blueprint $table) {
-            $table->string('browseId')->primary();
+            $table->id();
+            $table->string('browseId');
+            $table->unsignedBigInteger('userId');
             $table->json('artistId')->nullable();
             $table->json('artistName')->nullable();
             $table->string('audioPlaylistId');
@@ -30,6 +32,8 @@ return new class extends Migration
             $table->boolean('liked')->default(false);
             $table->timestamp('inLibrary')->useCurrent();
             $table->integer('downloadState')->default(0);
+
+            $table->foreign('userId')->references('id')->on('users')->onDelete('cascade');
 
             $table->timestamps();
         });

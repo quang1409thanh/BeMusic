@@ -14,7 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('format_entityfe', function (Blueprint $table) {
-            $table->string('videoId')->primary();
+            $table->id();
+            $table->string('videoId');
+            $table->unsignedBigInteger('userId');
             $table->integer('itag')->nullable();
             $table->string('mimeType')->nullable();
             $table->bigInteger('bitrate')->nullable();
@@ -32,6 +34,9 @@ return new class extends Migration
             $table->string('playbackTrackingAtrUrl')->nullable();
             $table->string('playbackTrackingVideostatsWatchtimeUrl')->nullable();
             $table->string('cpn')->nullable();
+
+            //$table->primary(['videoId', 'userId']);
+            $table->foreign('userId')->references('id')->on('users')->onDelete('cascade');
 
             $table->timestamps();
         });

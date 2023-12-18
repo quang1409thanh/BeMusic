@@ -10,9 +10,9 @@ class setVideoIdEntityfe extends Model
     use HasFactory;
     protected $table = 'set_video_id_entityfe';
 
-    protected $primaryKey = 'videoId';
+   // protected $primaryKey = 'videoId';
 
-    public $incrementing = false;
+    //public $incrementing = false;
 
     protected $fillable = [
         'videoId',

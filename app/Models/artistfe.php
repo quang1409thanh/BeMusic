@@ -9,15 +9,17 @@ class artistfe extends Model
 {
     use HasFactory;
     protected $table = 'artistfe';
-    protected $primaryKey = 'channelId';
-    public $incrementing = false;
+    //protected $primaryKey = 'channelId';
+    //public $incrementing = false;
 
     protected $casts = [
         'inLibrary' => 'datetime'
     ];
 
     protected $fillable = [
+        'id',
         'channelId',
+        'userId',
         'name',
         'thumbnails',
         'followed',

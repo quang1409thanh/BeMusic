@@ -10,14 +10,16 @@ class searchHistoryfe extends Model
     use HasFactory;
 
     protected $table = 'search_historyfe';
-    protected $primaryKey = 'query';
-    public $incrementing = false;
+    //protected $primaryKey = ['query', 'userId'];
+    //public $incrementing = false;
 
     protected $casts = [
 
     ];
 
     protected $fillable = [
-        'query'
+        'id',
+        'query',
+        'userId'
     ];
 }

@@ -11,10 +11,14 @@ class queueEntityfe extends Model
     protected $table = 'queue_entityfe';
 
     protected $fillable = [
+        'id',
+        'queue_id',
         'listTrack',
+        'userId',
         'created_at',
         'updated_at',
     ];
+
 
     protected $casts = [
         'listTrack' => 'array',

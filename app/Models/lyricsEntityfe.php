@@ -10,12 +10,13 @@ class lyricsEntityfe extends Model
     use HasFactory;
     protected $table = 'lyrics_entityfe';
 
-    protected $primaryKey = 'videoId';
+    //protected $primaryKey = ['videoId', 'userId'];
 
-    public $incrementing = false;
+    //public $incrementing = false;
 
     protected $fillable = [
         'videoId',
+        'userId',
         'error',
         'lines',
         'syncType',

@@ -9,9 +9,12 @@ class localPlaylistEntityfe extends Model
 {
     use HasFactory;
     protected $table = 'local_playlist_entityfe';
-    protected $primaryKey = 'id';
+    //protected $primaryKey = 'id';
 
     protected $fillable = [
+        'userId',
+        'id',
+        'localPlaylistId',
         'title',
         'thumbnail',
         'inLibrary',

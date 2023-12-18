@@ -15,13 +15,15 @@ return new class extends Migration
     {
         Schema::create('pair_song_local_playlistfe', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('userId');
             $table->unsignedBigInteger('playlistId');
-            $table->string('songId');
+            $table->unsignedBigInteger('songId');
             $table->integer('position')->default(0);
             $table->timestamp('inPlaylist')->useCurrent();
             
             $table->foreign('playlistId')->references('id')->on('local_playlist_entityfe')->onDelete('cascade');
-            $table->foreign('songId')->references('videoID')->on('songfe')->onDelete('cascade');
+            $table->foreign('songId')->references('id')->on('songfe')->onDelete('cascade');
+            $table->foreign('userId')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

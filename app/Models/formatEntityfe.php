@@ -11,12 +11,14 @@ class formatEntityfe extends Model
 
     protected $table = 'format_entityfe';
 
-    protected $primaryKey = 'videoId';
+    //protected $primaryKey = ['videoId', 'userId'];
 
-    public $incrementing = false;
+    //public $incrementing = false;
 
     protected $fillable = [
+        'id',
         'videoId',
+        'userId',
         'itag',
         'mimeType',
         'bitrate',

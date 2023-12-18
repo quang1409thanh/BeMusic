@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('local_playlist_entityfe', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('localPlaylistId');
+            $table->unsignedBigInteger('userId');
             $table->string('title');
             $table->string('thumbnail')->nullable();
             $table->timestamp('inLibrary')->useCurrent();
@@ -25,6 +27,8 @@ return new class extends Migration
             $table->integer('syncState')->default(0);
 
             $table->json('tracks')->nullable();
+
+            $table->foreign('userId')->references('id')->on('users')->onDelete('cascade');
 
             $table->timestamps();
         });

@@ -23,11 +23,7 @@ class MediaCacheService
      */
     public function get(): array
     {
-        if (!config('sound.cache_media')) {
-            return $this->query();
-        }
-
-        return $this->cache->rememberForever(self::CACHE_KEY, fn (): array => $this->query());
+        return  $this->query();
     }
 
     /**

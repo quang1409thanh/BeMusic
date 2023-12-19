@@ -52,7 +52,7 @@ Route::prefix('api')->middleware('api')->group(static function (): void {
             return $pusher->socket_auth($request->channel_name, $request->socket_id);
         })->name('broadcasting.auth');
 
-        Route::get('data', [DataController::class, 'index']);
+//        Route::get('data', [DataController::class, 'index']);
 
         Route::put('settings', [SettingController::class, 'update']);
 

@@ -9,19 +9,26 @@ use App\Http\Controllers\Download\SongController as SongDownloadController;
 use App\Http\Controllers\ITunesController;
 use App\Http\Controllers\LastfmController;
 use App\Http\Controllers\PlayController;
+use App\Http\Controllers\SearchController;
 
 use App\Http\Controllers\API\DataController;
 use App\Http\Controllers\API\MediaInformation\AlbumController;
 
+use App\Http\Controllers\SearchHistoryfeController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('web')->group(static function (): void {
-    Route::get('/', static fn () => view('index'));
+    Route::get('/', function () {
+        return ['sound_api' => app()->version()];
+    });
+
     Route::get('data', [DataController::class, 'index']);
-    
+
+    Route::get('search', [SearchController::class, 'search']);
+
     Route::get('album/{id}', [AlbumController::class, 'show']);
 
-    Route::get('remote', static fn () => view('remote'));
+    Route::get('remote', static fn() => view('remote'));
 
     Route::middleware('auth')->group(static function (): void {
         Route::prefix('lastfm')->group(static function (): void {
@@ -45,6 +52,5 @@ Route::middleware('web')->group(static function (): void {
             Route::get('favorites', [FavoritesDownloadController::class, 'show']);
         });
     });
-    Route::get('get_search_history', [SearchHistoryfeController::class, 'getSearchHistory']);
 
 });

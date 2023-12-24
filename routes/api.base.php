@@ -27,6 +27,7 @@ use App\Http\Controllers\API\SongController;
 use App\Http\Controllers\API\UploadController;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\YouTubeController;
+use App\Http\Controllers\SearchHistoryfeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Pusher\Pusher;
@@ -51,6 +52,14 @@ Route::prefix('api')->middleware('api')->group(static function (): void {
 
             return $pusher->socket_auth($request->channel_name, $request->socket_id);
         })->name('broadcasting.auth');
+
+        //
+        Route::get('get_search_history', [SearchHistoryfeController::class, 'getSearchHistory']);
+        Route::post('add_search_history', [SearchHistoryfeController::class, 'addSearchHistory']);
+        Route::delete('delete_search_history', [SearchHistoryfeController::class, 'deleteSearchHistory']);
+
+
+
 
         Route::get('data', [DataController::class, 'index']);
 

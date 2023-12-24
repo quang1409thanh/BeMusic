@@ -9,10 +9,14 @@ use App\Http\Controllers\Download\SongController as SongDownloadController;
 use App\Http\Controllers\ITunesController;
 use App\Http\Controllers\LastfmController;
 use App\Http\Controllers\PlayController;
+
+use App\Http\Controllers\SearchHistoryfeController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('web')->group(static function (): void {
     Route::get('/', function () {
         return ['sound/api: v.1.0.0'];
     });
+    Route::get('get_search_history', [SearchHistoryfeController::class, 'getSearchHistory']);
+
 });

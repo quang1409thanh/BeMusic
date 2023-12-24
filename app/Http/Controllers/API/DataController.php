@@ -34,26 +34,15 @@ class DataController extends Controller
     public function index()
     {
         return response()->json($this->mediaCacheService->get() + [
-            'settings' => $this->currentUser->is_admin ? $this->settingRepository->getAllAsKeyValueArray() : [],
-            'playlists' => $this->playlistRepository->getAllByCurrentUser(),
-            'interactions' => $this->interactionRepository->getAllByCurrentUser(),
-            'recentlyPlayed' => $this->interactionRepository->getRecentlyPlayed(
-                $this->currentUser,
-                self::RECENTLY_PLAYED_EXCERPT_COUNT
-            ),
-            'users' => $this->currentUser->is_admin ? $this->userRepository->getAll() : [],
-            'currentUser' => $this->currentUser,
-            'useLastfm' => LastfmService::used(),
-            'useYouTube' => YouTubeService::enabled(),
-            'useiTunes' => ITunesService::used(),
-            'allowDownload' => config('sound.download.allow'),
-            'supportsTranscoding' => config('sound.streaming.ffmpeg_path')
-                && is_executable(config('sound.streaming.ffmpeg_path')),
-            'cdnUrl' => static_url(),
-            // 'currentVersion' => sound_version(),
-            // 'latestVersion' => $this->currentUser->is_admin
-            //     ? $this->applicationInformationService->getLatestVersionNumber()
-            //     : sound_version(),
-        ]);
+                'settings' =>$this->settingRepository->getAllAsKeyValueArray(),
+                'playlists' => $this->playlistRepository->getAllByCurrentUser(),
+                'interactions' => $this->interactionRepository->getAllByCurrentUser(),
+                // 'recentlyPlayed' => $this->interactionRepository->getRecentlyPlayed(
+                //     $this->currentUser,
+                //     self::RECENTLY_PLAYED_EXCERPT_COUNT
+                // ),
+                'users' =>$this->userRepository->getAll(),
+                'currentUser' => $this->currentUser,
+            ]);
     }
 }

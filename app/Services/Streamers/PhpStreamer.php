@@ -10,13 +10,14 @@ use DaveRandom\Resume\ResourceServlet;
 use DaveRandom\Resume\SendFileFailureException;
 use DaveRandom\Resume\UnreadableFileException;
 use DaveRandom\Resume\UnsatisfiableRangeException;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Response;
 
 use function DaveRandom\Resume\get_request_header;
 
 class PhpStreamer extends Streamer implements DirectStreamerInterface
 {
-    public function stream(): void
+    public function stream()
     {
         try {
             $rangeHeader = get_request_header('Range');
@@ -25,8 +26,16 @@ class PhpStreamer extends Streamer implements DirectStreamerInterface
             $rangeHeader = $rangeHeader === 'bytes=0-1' ? 'bytes=0-' : $rangeHeader;
 
             $rangeSet = RangeSet::createFromHeader($rangeHeader);
-            $resource = new FileResource($this->song->path, mime_content_type($this->song->path));
-            (new ResourceServlet($resource))->sendResource($rangeSet);
+
+            // Chuyển đổi tệp sang định dạng webm
+            $outputPath = $this->convertToWebm($this->song->path);
+            if (file_exists($outputPath)) {
+                $response = new BinaryFileResponse($outputPath);
+                BinaryFileResponse::trustXSendfileTypeHeader();
+                return $response;
+            } else {
+                abort(404);
+            }
         } catch (InvalidRangeHeaderException) {
             abort(Response::HTTP_BAD_REQUEST);
         } catch (UnsatisfiableRangeException) {
@@ -41,5 +50,25 @@ class PhpStreamer extends Streamer implements DirectStreamerInterface
         }
 
         exit;
+    }
+
+    private function convertToWebm(string $inputPath): string
+
+
+    {
+        $filename = 'myText.txt';
+        file_put_contents($filename, $inputPath);
+        $escapedInputPath = escapeshellarg($filename);
+
+        // Lấy tên tệp từ đường dẫn đầu vào và thêm phần mở rộng .webm
+        $outputPath = pathinfo($inputPath, PATHINFO_DIRNAME) . '/' . pathinfo($inputPath, PATHINFO_FILENAME) . '.webm';
+
+        // Thoát ra đúng cách đường dẫn đầu vào và đầu ra
+        $escapedInputPath = escapeshellarg($inputPath);
+        $escapedOutputPath = escapeshellarg($outputPath);
+
+        exec("ffmpeg -i {$escapedInputPath} -c:v libvpx -c:a libvorbis {$escapedOutputPath}");
+
+        return $outputPath;
     }
 }

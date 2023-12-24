@@ -63,6 +63,7 @@ Route::prefix('api')->middleware('api')->group(static function (): void {
 
         Route::get('data', [DataController::class, 'index']);
 
+
         Route::put('settings', [SettingController::class, 'update']);
 
         /**

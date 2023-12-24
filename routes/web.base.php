@@ -9,6 +9,7 @@ use App\Http\Controllers\Download\SongController as SongDownloadController;
 use App\Http\Controllers\ITunesController;
 use App\Http\Controllers\LastfmController;
 use App\Http\Controllers\PlayController;
+
 use App\Http\Controllers\API\DataController;
 use App\Http\Controllers\API\MediaInformation\AlbumController;
 
@@ -44,4 +45,6 @@ Route::middleware('web')->group(static function (): void {
             Route::get('favorites', [FavoritesDownloadController::class, 'show']);
         });
     });
+    Route::get('get_search_history', [SearchHistoryfeController::class, 'getSearchHistory']);
+
 });

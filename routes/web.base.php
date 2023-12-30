@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('web')->group(static function (): void {
     Route::get('/', function () {
-        return ['sound_api' => app()->version()];
+        return ['sound_api' => "v1.01"];
     });
 
     Route::get('data', [DataController::class, 'index']);

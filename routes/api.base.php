@@ -71,7 +71,7 @@ Route::prefix('api')->middleware('api')->group(static function (): void {
          */
         Route::post('{song}/scrobble', [ScrobbleController::class, 'store']);
         Route::post('songs/{song}/scrobble', [ScrobbleController::class, 'store']);
-        Route::put('songs', [SongController::class, 'update']);
+        Route::put('    ', [SongController::class, 'update']);
 
         Route::post('upload', UploadController::class);
 

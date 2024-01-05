@@ -41,9 +41,21 @@ sau đó chạy các lệnh
     user: admin@sound.dev
     password: sound123
 
+## 3. Hướng dẫn chạy bên front-end
+
+    `sau khi clone project mysound, vào thư mục src/common/config.kt 
     
-## 3. Nguồn tham khảo
+![Alt text](image.png)
 
+    `chạy server`
+        - kiểm tra địa chỉ ip của máy tính chạy server.
+        - sau đó chạy lệnh php artisan serve --host=ip_address 
+            ví dụ: php artisan serve --host=192.168.45.87
+        - vào chỉnh sửa file config.kt cuẩ file trên 'local_Url'
+        
+![Alt text](image-1.png)
 
-- sau d
+    - với port 8000
+## 4. Nguồn tham khảo
+
 - tham khảo dựa trên dự án koel streaming music.
